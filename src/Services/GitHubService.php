@@ -8,14 +8,18 @@ use Illuminate\Support\Facades\Http;
 class GitHubService
 {
     protected bool $enabled = false;
+
     protected ?string $token = null;
+
     protected ?string $repository = null;
+
     protected int $cacheTtl;
+
     protected string $defaultVersion;
 
     public function __construct(
-        string $repository = null,
-        string $token = null,
+        ?string $repository = null,
+        ?string $token = null,
         int $cacheTtl = 3600,
         string $defaultVersion = '0.0'
     ) {
@@ -28,12 +32,14 @@ class GitHubService
     public function enable(): self
     {
         $this->enabled = true;
+
         return $this;
     }
 
     public function disable(): self
     {
         $this->enabled = false;
+
         return $this;
     }
 
@@ -42,7 +48,7 @@ class GitHubService
         return $this->enabled;
     }
 
-    public function getLatestTag(string $repository = null): string
+    public function getLatestTag(?string $repository = null): string
     {
         if (! $this->enabled) {
             return $this->defaultVersion;

@@ -8,8 +8,11 @@ use Livewire\Component;
 class GitHubVersion extends Component
 {
     public bool $showLogo = true;
+
     public bool $showUrl = true;
+
     public ?string $version = null;
+
     public ?string $repository = null;
 
     public function mount(GitHubService $githubService): void
