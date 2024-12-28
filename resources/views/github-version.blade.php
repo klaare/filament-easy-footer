@@ -1,6 +1,6 @@
 <span class="flex items-center gap-2">
     @if($version)
-        <span>v{{ $version }}</span>
+        <span>{{ str()->startsWith($version, 'v') ? $version : 'v' . $version }}</span>
         @if($showUrl)
             <a href="{{ $this->getGithubUrl() }}" target="_blank">
                 @if($showLogo)

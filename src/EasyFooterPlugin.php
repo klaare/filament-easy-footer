@@ -6,11 +6,6 @@ use Devonab\FilamentEasyFooter\Services\GitHubService;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
-/**
- * EasyFooterPlugin - A Filament plugin to add a customizable footer to your admin panel
- *
- * @implements Plugin
- */
 class EasyFooterPlugin implements Plugin
 {
     private const MAX_LINKS = 3;

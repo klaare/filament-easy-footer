@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {
     Cache::flush();
-    Config::set('filament-easy-footer.github.enabled', true);
     Config::set('filament-easy-footer.github.token', 'fake-token');
     Config::set('filament-easy-footer.github.repository', 'devonab/filament-easy-footer');
 });
@@ -20,6 +19,7 @@ it('returns latest release tag when available', function () {
     ]);
 
     $service = app(GitHubService::class);
+    $service->enable();
     $tag = $service->getLatestTag(config('filament-easy-footer.github.repository'));
 
     expect($tag)->toBe('v1.2.3');
@@ -35,6 +35,7 @@ it('falls back to tags when no releases exist', function () {
     ]);
 
     $service = app(GitHubService::class);
+    $service->enable();
     $tag = $service->getLatestTag(config('filament-easy-footer.github.repository'));
 
     expect($tag)->toBe('v1.0.0');
@@ -47,15 +48,15 @@ it('returns default version when no tags or releases exist', function () {
     ]);
 
     $service = app(GitHubService::class);
+    $service->enable();
     $tag = $service->getLatestTag(config('filament-easy-footer.github.repository'));
 
     expect($tag)->toBe('0.0');
 });
 
 it('returns default version when github is disabled', function () {
-    Config::set('filament-easy-footer.github.enabled', false);
-
     $service = app(GitHubService::class);
+    $service->disable();
     $tag = $service->getLatestTag(config('filament-easy-footer.github.repository'));
 
     expect($tag)->toBe('0.0');
@@ -69,9 +70,9 @@ it('caches the github response', function () {
     ]);
 
     $service = app(GitHubService::class);
+    $service->enable();
 
     $tag1 = $service->getLatestTag(config('filament-easy-footer.github.repository'));
-
     $tag2 = $service->getLatestTag(config('filament-easy-footer.github.repository'));
 
     expect($tag1)->toBe('v1.2.3')
@@ -88,6 +89,7 @@ it('uses authorization token in requests', function () {
     ]);
 
     $service = app(GitHubService::class);
+    $service->enable();
     $service->getLatestTag(config('filament-easy-footer.github.repository'));
 
     Http::assertSent(function ($request) {
@@ -102,7 +104,20 @@ it('handles network errors gracefully', function () {
     ]);
 
     $service = app(GitHubService::class);
+    $service->enable();
     $tag = $service->getLatestTag(config('filament-easy-footer.github.repository'));
 
     expect($tag)->toBe('0.0');
+});
+
+it('can be enabled and disabled', function () {
+    $service = app(GitHubService::class);
+
+    expect($service->isEnabled())->toBeFalse();
+
+    $service->enable();
+    expect($service->isEnabled())->toBeTrue();
+
+    $service->disable();
+    expect($service->isEnabled())->toBeFalse();
 });
