@@ -2,7 +2,6 @@
 
 namespace Devonab\FilamentEasyFooter;
 
-use Devonab\FilamentEasyFooter\Commands\FilamentEasyFooterCommand;
 use Devonab\FilamentEasyFooter\Livewire\GitHubVersion;
 use Devonab\FilamentEasyFooter\Services\GitHubService;
 use Devonab\FilamentEasyFooter\Testing\TestsEasyFooter;
@@ -96,16 +95,6 @@ class EasyFooterServiceProvider extends PackageServiceProvider
             // AlpineComponent::make('filament-easy-footer', __DIR__ . '/../resources/dist/components/filament-easy-footer.js'),
             Css::make('filament-easy-footer-styles', __DIR__ . '/../resources/dist/filament-easy-footer.css'),
             Js::make('filament-easy-footer-scripts', __DIR__ . '/../resources/dist/filament-easy-footer.js'),
-        ];
-    }
-
-    /**
-     * @return array<class-string>
-     */
-    protected function getCommands(): array
-    {
-        return [
-            FilamentEasyFooterCommand::class,
         ];
     }
 
