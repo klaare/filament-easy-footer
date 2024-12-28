@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Devonab\FilamentEasyFooter\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class FilamentEasyFooterCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'filament-easy-footer';
 
     public $description = 'My command';
 

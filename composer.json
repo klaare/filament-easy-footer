@@ -1,29 +1,27 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "devonab/filament-easy-footer",
+    "description": "A simple plugin to display a customizable footer in your filament application!",
     "keywords": [
-        ":vendor_name",
+        "Devonab",
         "laravel",
-        ":package_slug"
+        "filament-easy-footer"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/devonab/filament-easy-footer",
     "support": {
-        "issues": "https://github.com/:vendor_slug/:package_slug/issues",
-        "source": "https://github.com/:vendor_slug/:package_slug"
+        "issues": "https://github.com/devonab/filament-easy-footer/issues",
+        "source": "https://github.com/devonab/filament-easy-footer"
     },
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": " Devonab",
+            "email": "vable93@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.1",
         "filament/filament": "^3.0",
-        "filament/forms": "^3.0",
-        "filament/tables": "^3.0",
         "spatie/laravel-package-tools": "^1.15.0"
     },
     "require-dev": {
@@ -37,17 +35,16 @@
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
-        "spatie/laravel-ray": "^1.26"
+        "guzzlehttp/guzzle": "^7.8"
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Devonab\\FilamentEasyFooter\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/"
+            "Devonab\\FilamentEasyFooter\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -67,10 +64,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Devonab\\FilamentEasyFooter\\EasyFooterServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "FilamentEasyFooter": "Devonab\\FilamentEasyFooter\\Facades\\EasyFooter"
             }
         }
     },

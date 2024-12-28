@@ -1,1 +1,9 @@
 @import '../../vendor/filament/filament/resources/css/theme.css';
+
+.fi-footer > span {
+    @apply text-center p-2;
+}
+
+.fi-footer > span:nth-child(2) {
+    @apply border-x border-gray-200 dark:border-gray-700;
+}
