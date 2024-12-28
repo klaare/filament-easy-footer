@@ -9,6 +9,7 @@ beforeEach(function () {
     Cache::flush();
     Config::set('filament-easy-footer.github.token', 'fake-token');
     Config::set('filament-easy-footer.github.repository', 'devonab/filament-easy-footer');
+    Config::set('filament-easy-footer.github.cache_ttl', 3600);
 });
 
 it('returns latest release tag when available', function () {
@@ -120,4 +121,16 @@ it('can be enabled and disabled', function () {
 
     $service->disable();
     expect($service->isEnabled())->toBeFalse();
+});
+
+it('can control logo and url visibility', function () {
+    $service = app(GitHubService::class);
+
+    $service->enable(showLogo: true, showUrl: false);
+    expect($service->shouldShowLogo())->toBeTrue()
+        ->and($service->shouldShowUrl())->toBeFalse();
+
+    $service->enable(showLogo: false, showUrl: true);
+    expect($service->shouldShowLogo())->toBeFalse()
+        ->and($service->shouldShowUrl())->toBeTrue();
 });

@@ -7,9 +7,9 @@ use Livewire\Component;
 
 class GitHubVersion extends Component
 {
-    public bool $showLogo = true;
+    public bool $showLogo;
 
-    public bool $showUrl = true;
+    public bool $showUrl;
 
     public ?string $version = null;
 
@@ -21,6 +21,8 @@ class GitHubVersion extends Component
             return;
         }
 
+        $this->showLogo = $githubService->shouldShowLogo();
+        $this->showUrl = $githubService->shouldShowUrl();
         $this->repository = config('filament-easy-footer.github.repository');
         $this->version = $githubService->getLatestTag($this->repository);
     }

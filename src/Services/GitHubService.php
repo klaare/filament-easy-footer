@@ -12,7 +12,8 @@ class GitHubService
     protected ?string $token = null;
 
     protected ?string $repository = null;
-
+    protected bool $showLogo = false;
+    protected bool $showUrl = false;
     protected int $cacheTtl;
 
     protected string $defaultVersion;
@@ -29,9 +30,11 @@ class GitHubService
         $this->defaultVersion = $defaultVersion;
     }
 
-    public function enable(): self
+    public function enable(bool $showLogo = true, bool $showUrl = true): self
     {
         $this->enabled = true;
+        $this->showLogo = $showLogo;
+        $this->showUrl = $showUrl;
 
         return $this;
     }
@@ -46,6 +49,16 @@ class GitHubService
     public function isEnabled(): bool
     {
         return $this->enabled;
+    }
+
+    public function shouldShowLogo(): bool
+    {
+        return $this->showLogo;
+    }
+
+    public function shouldShowUrl(): bool
+    {
+        return $this->showUrl;
     }
 
     public function getLatestTag(?string $repository = null): string

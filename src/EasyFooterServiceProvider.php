@@ -56,7 +56,6 @@ class EasyFooterServiceProvider extends PackageServiceProvider
                 repository: config('filament-easy-footer.github.repository'),
                 token: config('filament-easy-footer.github.token'),
                 cacheTtl: config('filament-easy-footer.github.cache_ttl', 3600),
-                defaultVersion: config('filament-easy-footer.github.default_version', '0.0')
             );
         });
 
