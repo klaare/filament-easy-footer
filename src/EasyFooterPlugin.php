@@ -2,6 +2,7 @@
 
 namespace Devonab\FilamentEasyFooter;
 
+use Devonab\FilamentEasyFooter\Services\GitHubService;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
@@ -49,6 +50,14 @@ class EasyFooterPlugin implements Plugin
     {
         if ($this->shouldSkipRendering()) {
             return;
+        }
+
+        $githubService = app(GitHubService::class);
+
+        if ($this->githubEnabled) {
+            $githubService->enable();
+        } else {
+            $githubService->disable();
         }
 
         $startTime = $this->loadTimeEnabled ? microtime(true) : 0;

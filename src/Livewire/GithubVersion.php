@@ -8,21 +8,18 @@ use Livewire\Component;
 class GitHubVersion extends Component
 {
     public bool $showLogo = true;
-
     public bool $showUrl = true;
-
     public ?string $version = null;
-
     public ?string $repository = null;
 
-    public function mount(): void
+    public function mount(GitHubService $githubService): void
     {
-        if (! config('easy-footer.github.enabled')) {
+        if (! $githubService->isEnabled()) {
             return;
         }
 
-        $this->repository = config('easy-footer.github.repository');
-        $this->version = app(GitHubService::class)->getLatestTag($this->repository);
+        $this->repository = config('filament-easy-footer.github.repository');
+        $this->version = $githubService->getLatestTag($this->repository);
     }
 
     public function getGithubUrl(): string

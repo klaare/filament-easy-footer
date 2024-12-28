@@ -4,6 +4,7 @@ namespace Devonab\FilamentEasyFooter;
 
 use Devonab\FilamentEasyFooter\Commands\FilamentEasyFooterCommand;
 use Devonab\FilamentEasyFooter\Livewire\GitHubVersion;
+use Devonab\FilamentEasyFooter\Services\GitHubService;
 use Devonab\FilamentEasyFooter\Testing\TestsEasyFooter;
 use Filament\Support\Assets\Asset;
 use Filament\Support\Assets\Css;
@@ -50,6 +51,14 @@ class EasyFooterServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
+        $this->app->singleton(GitHubService::class, function ($app) {
+            return new GitHubService(
+                repository: config('filament-easy-footer.github.repository'),
+                token: config('filament-easy-footer.github.token'),
+                cacheTtl: config('filament-easy-footer.github.cache_ttl', 3600),
+                defaultVersion: config('filament-easy-footer.github.default_version', '0.0')
+            );
+        });
 
         Livewire::component('devonab.filament-easy-footer.github-version', GitHubVersion::class);
 
