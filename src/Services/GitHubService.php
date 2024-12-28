@@ -12,8 +12,11 @@ class GitHubService
     protected ?string $token = null;
 
     protected ?string $repository = null;
+
     protected bool $showLogo = false;
+
     protected bool $showUrl = false;
+
     protected int $cacheTtl;
 
     protected string $defaultVersion;
