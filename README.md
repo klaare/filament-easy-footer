@@ -26,7 +26,6 @@ This filament Plugin provides an easy and flexible way to add a customizable foo
     - [Border on top](#border-on-top)
     - [Hiding from auth pages](#hiding-from-auth-pages)
 - [Testing](#testing)
-- [Changelog](#changelog)
 - [Contributing](#contributing)
 - [Security Vulnerabilities](#security-vulnerabilities)
 - [Credits](#credits)
@@ -229,7 +228,7 @@ composer test
 
 ## Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+Please see [CHANGELOG](https://github.com/Devonab/filament-easy-footer/releases) for more information on what has changed recently.
 
 ## Contributing
 
