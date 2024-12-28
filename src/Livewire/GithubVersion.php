@@ -21,7 +21,6 @@ class GitHubVersion extends Component
             return;
         }
 
-
         $this->repository = config('easy-footer.github.repository');
         $this->version = app(GitHubService::class)->getLatestTag($this->repository);
     }

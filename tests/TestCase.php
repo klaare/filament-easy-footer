@@ -4,6 +4,7 @@ namespace Devonab\FilamentEasyFooter\Tests;
 
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
+use Devonab\FilamentEasyFooter\EasyFooterServiceProvider;
 use Filament\Actions\ActionsServiceProvider;
 use Filament\FilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;
@@ -16,7 +17,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
-use Devonab\FilamentEasyFooter\EasyFooterServiceProvider;
 
 class TestCase extends Orchestra
 {
