@@ -14,7 +14,7 @@ class EasyFooterPlugin implements Plugin
 
     protected bool $githubEnabled = false;
 
-    protected bool $borderTopEnabled = true;
+    protected bool $borderTopEnabled = false;
 
     protected bool $showLogo = true;
 
