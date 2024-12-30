@@ -24,47 +24,45 @@ it('sets footer position correctly')
         ->getRenderHook())
     ->toBe('panels::sidebar.footer');
 
-describe('load time functionality', function () {
-    it('enables load time display without prefix')
-        ->expect(fn () => EasyFooterPlugin::make()
-            ->withLoadTime()
-            ->isLoadTimeEnabled())
-        ->toBeTrue();
+it('enables load time display without prefix')
+    ->expect(fn () => EasyFooterPlugin::make()
+        ->withLoadTime()
+        ->isLoadTimeEnabled())
+    ->toBeTrue();
 
-    it('enables load time with prefix', function () {
-        $plugin = EasyFooterPlugin::make()
-            ->withLoadTime('Page générée en');
+it('enables load time with prefix', function () {
+    $plugin = EasyFooterPlugin::make()
+        ->withLoadTime('Page générée en');
 
-        expect($plugin)
-            ->isLoadTimeEnabled()->toBeTrue()
-            ->getLoadTimePrefix()->toBe('Page générée en');
-    });
+    expect($plugin)
+        ->isLoadTimeEnabled()->toBeTrue()
+        ->getLoadTimePrefix()->toBe('Page générée en');
+});
 
-    it('can disable load time explicitly')
-        ->expect(fn () => EasyFooterPlugin::make()
-            ->withLoadTime(enabled: false)
-            ->isLoadTimeEnabled())
-        ->toBeFalse();
+it('can disable load time explicitly')
+    ->expect(fn () => EasyFooterPlugin::make()
+        ->withLoadTime(enabled: false)
+        ->isLoadTimeEnabled())
+    ->toBeFalse();
 
-    it('keeps load time enabled when setting prefix', function () {
-        $plugin = EasyFooterPlugin::make()
-            ->withLoadTime(enabled: false)
-            ->withLoadTime('Page générée en');
+it('keeps load time enabled when setting prefix', function () {
+    $plugin = EasyFooterPlugin::make()
+        ->withLoadTime(enabled: false)
+        ->withLoadTime('Page générée en');
 
-        expect($plugin)
-            ->isLoadTimeEnabled()->toBeTrue()
-            ->getLoadTimePrefix()->toBe('Page générée en');
-    });
+    expect($plugin)
+        ->isLoadTimeEnabled()->toBeTrue()
+        ->getLoadTimePrefix()->toBe('Page générée en');
+});
 
-    it('can update prefix while keeping enabled state', function () {
-        $plugin = EasyFooterPlugin::make()
-            ->withLoadTime('Initial prefix')
-            ->withLoadTime('New prefix');
+it('can update prefix while keeping enabled state', function () {
+    $plugin = EasyFooterPlugin::make()
+        ->withLoadTime('Initial prefix')
+        ->withLoadTime('New prefix');
 
-        expect($plugin)
-            ->isLoadTimeEnabled()->toBeTrue()
-            ->getLoadTimePrefix()->toBe('New prefix');
-    });
+    expect($plugin)
+        ->isLoadTimeEnabled()->toBeTrue()
+        ->getLoadTimePrefix()->toBe('New prefix');
 });
 
 it('limits and filters links correctly', function () {
