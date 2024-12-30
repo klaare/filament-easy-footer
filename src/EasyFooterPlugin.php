@@ -123,7 +123,7 @@ class EasyFooterPlugin implements Plugin
     /**
      * Configure whether to hide the footer from auth pages
      *
-     * @return EasyFooterPlugin
+     * @return static EasyFooterPlugin
      */
     public function hideFromAuthPages(bool $enabled = true): static
     {
@@ -137,7 +137,7 @@ class EasyFooterPlugin implements Plugin
      *
      * @param  bool  $showLogo  Whether to show the GitHub logo
      * @param  bool  $showUrl  Whether to show the GitHub URL
-     * @return EasyFooterPlugin
+     * @return static EasyFooterPlugin
      */
     public function withGithub(bool $showLogo = true, bool $showUrl = true): static
     {
@@ -151,7 +151,7 @@ class EasyFooterPlugin implements Plugin
     /**
      * Configure if the footer has a border
      *
-     * @return EasyFooterPlugin
+     * @return static EasyFooterPlugin
      */
     public function withBorder(bool $enabled = true): static
     {
@@ -163,7 +163,7 @@ class EasyFooterPlugin implements Plugin
     /**
      * Configure the footer position
      *
-     * @return EasyFooterPlugin
+     * @return static EasyFooterPlugin
      */
     public function withFooterPosition(string $position): static
     {
@@ -175,7 +175,7 @@ class EasyFooterPlugin implements Plugin
     /**
      * Enable load time display with optional prefix text
      *
-     * @return EasyFooterPlugin
+     * @return static EasyFooterPlugin
      */
     public function withLoadTime(?string $prefix = null, bool $enabled = true): static
     {
@@ -189,7 +189,7 @@ class EasyFooterPlugin implements Plugin
      * Add custom links to the footer
      *
      * @param  array  $links  Array of links with 'title' and 'url' keys
-     * @return EasyFooterPlugin
+     * @return static EasyFooterPlugin
      */
     public function withLinks(array $links): static
     {
@@ -237,7 +237,7 @@ class EasyFooterPlugin implements Plugin
     /**
      * Create a new instance of the plugin
      *
-     * @return EasyFooterPlugin
+     * @return static EasyFooterPlugin
      */
     public static function make(): static
     {
@@ -247,7 +247,7 @@ class EasyFooterPlugin implements Plugin
     /**
      * Get the current instance of the plugin
      *
-     * @return EasyFooterPlugin
+     * @return static EasyFooterPlugin
      */
     public static function get(): static
     {
