@@ -23,6 +23,7 @@ class EasyFooterPlugin implements Plugin
     protected bool $hideFromAuthPagesEnabled = false;
 
     protected bool $loadTimeEnabled = false;
+    protected ?string $loadTimePrefix = null;
 
     protected string $footerPosition = 'footer';
 
@@ -30,6 +31,7 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Get the unique identifier for the plugin
+     * @return string
      */
     public function getId(): string
     {
@@ -65,6 +67,7 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Check if the footer rendering should be skipped
+     * @return bool
      */
     public function shouldSkipRendering(): bool
     {
@@ -73,6 +76,9 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Render the footer view
+     * @param float $startTime
+     * @return string
+     * @throws \Throwable
      */
     protected function renderFooter(float $startTime): string
     {
@@ -83,12 +89,14 @@ class EasyFooterPlugin implements Plugin
             'showUrl' => $this->showUrl,
             'borderTopEnabled' => $this->borderTopEnabled,
             'loadTime' => $this->loadTimeEnabled ? $this->calculateLoadTime($startTime) : false,
+            'loadTimePrefix' => $this->loadTimePrefix,
             'links' => $this->links,
         ])->render();
     }
 
     /**
      * Check if the current page is an auth page
+     * @return bool
      */
     protected function isOnAuthPage(): bool
     {
@@ -97,6 +105,8 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Calculate the page load time
+     * @param float $startTime
+     * @return string
      */
     protected function calculateLoadTime(float $startTime): string
     {
@@ -105,6 +115,7 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Get the render hook based on footer position
+     * @return string
      */
     public function getRenderHook(): string
     {
@@ -117,6 +128,8 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Configure whether to hide the footer from auth pages
+     * @param bool $enabled
+     * @return EasyFooterPlugin
      */
     public function hideFromAuthPages(bool $enabled = true): static
     {
@@ -128,8 +141,9 @@ class EasyFooterPlugin implements Plugin
     /**
      * Configure GitHub integration
      *
-     * @param  bool  $showLogo  Whether to show the GitHub logo
-     * @param  bool  $showUrl  Whether to show the GitHub URL
+     * @param bool $showLogo Whether to show the GitHub logo
+     * @param bool $showUrl Whether to show the GitHub URL
+     * @return EasyFooterPlugin
      */
     public function withGithub(bool $showLogo = true, bool $showUrl = true): static
     {
@@ -142,6 +156,8 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Configure if the footer has a border
+     * @param bool $enabled
+     * @return EasyFooterPlugin
      */
     public function withBorder(bool $enabled = true): static
     {
@@ -152,6 +168,8 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Configure the footer position
+     * @param string $position
+     * @return EasyFooterPlugin
      */
     public function withFooterPosition(string $position): static
     {
@@ -161,19 +179,25 @@ class EasyFooterPlugin implements Plugin
     }
 
     /**
-     * Enable load time display
+     * Enable load time display with optional prefix text
+     * @param string|null $prefix
+     * @param bool $enabled
+     * @return EasyFooterPlugin
      */
-    public function withLoadTime(bool $enabled = true): static
+    public function withLoadTime(?string $prefix = null, bool $enabled = true): static
     {
         $this->loadTimeEnabled = $enabled;
+        $this->loadTimePrefix = $prefix;
 
         return $this;
     }
 
+
     /**
      * Add custom links to the footer
      *
-     * @param  array  $links  Array of links with 'title' and 'url' keys
+     * @param array $links Array of links with 'title' and 'url' keys
+     * @return EasyFooterPlugin
      */
     public function withLinks(array $links): static
     {
@@ -188,6 +212,7 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Check if load time is enabled
+     * @return bool
      */
     public function isLoadTimeEnabled(): bool
     {
@@ -195,7 +220,17 @@ class EasyFooterPlugin implements Plugin
     }
 
     /**
+     * Check if a prefix is set for the loadtime
+     * @return string|null
+     */
+    public function getLoadTimePrefix(): ?string
+    {
+        return $this->loadTimePrefix;
+    }
+
+    /**
      * Get the current links
+     * @return array
      */
     public function getLinks(): array
     {
@@ -204,6 +239,7 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Boot the plugin
+     * @param Panel $panel
      */
     public function boot(Panel $panel): void
     {
@@ -212,6 +248,7 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Create a new instance of the plugin
+     * @return EasyFooterPlugin
      */
     public static function make(): static
     {
@@ -220,6 +257,7 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Get the current instance of the plugin
+     * @return EasyFooterPlugin
      */
     public static function get(): static
     {
