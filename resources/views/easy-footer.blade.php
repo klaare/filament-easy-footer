@@ -5,8 +5,8 @@
 <footer
     @class([
         'fi-footer my-3 flex flex-wrap items-center justify-center text-sm text-gray-500 dark:text-gray-400',
-        'border-t border-gray-200 dark:border-gray-700 text-center p-2 gap-2' => $footerPosition === 'sidebar' || $footerPosition === 'sidebar.footer' || $borderTopEnabled === true,
-        'fi-sidebar' => $footerPosition === 'sidebar' || $footerPosition === 'sidebar.footer',
+        'border-t border-gray-200 dark:border-gray-700 text-center p-2' => $footerPosition === 'sidebar' || $footerPosition === 'sidebar.footer' || $borderTopEnabled === true,
+        'fi-sidebar gap-2' => $footerPosition === 'sidebar' || $footerPosition === 'sidebar.footer',
         'gap-4' => $footerPosition !== 'sidebar' && $footerPosition !== 'sidebar.footer',
         'mx-auto w-full px-4 md:px-6 lg:px-8' => $footerPosition === 'footer',
         match ($maxContentWidth ??= (filament()->getMaxContentWidth() ?? MaxWidth::SevenExtraLarge)) {
@@ -42,6 +42,23 @@
             :show-logo="$showLogo"
             :show-url="$showUrl"
         />
+    @endif
+
+    @if($logoPath)
+        <span class="flex items-center">
+            @if($logoUrl)
+                <a href="{{ $logoUrl }}" class="inline-flex">
+                    @endif
+                    <img
+                        src="{{ $logoPath }}"
+                        alt="Logo"
+                        class="w-auto object-contain"
+                        style="height: {{ $logoHeight }}px;"
+                    >
+                    @if($logoUrl)
+                </a>
+            @endif
+        </span>
     @endif
 
     @if($loadTime)

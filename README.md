@@ -22,6 +22,7 @@ This filament Plugin provides an easy and flexible way to add a customizable foo
     - [Footer position](#footer-position)
     - [Show GitHub version](#show-github-version)
     - [Show load time](#load-time)
+    - [Custom logo with link](#custom-logo-with-link)
     - [Add customs links](#links)
     - [Border on top](#border-on-top)
     - [Hiding from auth pages](#hiding-from-auth-pages)
@@ -172,6 +173,45 @@ use Devonab\FilamentEasyFooter\EasyFooterPlugin;
     ->withLoadTime(),
 ])
 ```
+
+You can also display a prefix by using this configuration :
+
+```php
+use Devonab\FilamentEasyFooter\EasyFooterPlugin;
+
+->plugins([
+    EasyFooterPlugin::make()
+    ->withLoadTime('This page loaded in'),
+])
+```
+![Filament Easy Footer loadtime prefix](./art/loadtime_prefix.webp)
+
+### Custom logo with link
+![Filament Easy Footer custom logo](./art/custom_logo.webp)
+
+
+You can add **custom logo** with link to the footer by using this configuration :
+
+```php
+use Devonab\FilamentEasyFooter\EasyFooterPlugin;
+
+->plugins([
+    EasyFooterPlugin::make()
+    ->withLogo('https://static.cdnlogo.com/logos/l/23/laravel.svg', 'https://laravel.com')
+])
+```
+
+You're not obliged to add a link, and if you wish, you can specify the height of the logo as a parameter (default: 20px).
+```php
+use Devonab\FilamentEasyFooter\EasyFooterPlugin;
+
+->plugins([
+    EasyFooterPlugin::make()
+    ->withLogo('https://static.cdnlogo.com/logos/l/23/laravel.svg', null, 60)
+])
+```
+
+
 ### Links
 ![Filament Easy Footer links](./art/links.webp)
 

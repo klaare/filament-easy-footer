@@ -29,6 +29,9 @@ class EasyFooterPlugin implements Plugin
     protected string $footerPosition = 'footer';
 
     protected array $links = [];
+    protected ?string $logoPath = null;
+    protected ?string $logoUrl = null;
+    protected int $logoHeight = 20;
 
     /**
      * Get the unique identifier for the plugin
@@ -85,6 +88,9 @@ class EasyFooterPlugin implements Plugin
             'githubEnabled' => $this->githubEnabled,
             'showLogo' => $this->showLogo,
             'showUrl' => $this->showUrl,
+            'logoPath' => $this->logoPath,
+            'logoUrl' => $this->logoUrl,
+            'logoHeight' => $this->logoHeight,
             'borderTopEnabled' => $this->borderTopEnabled,
             'loadTime' => $this->loadTimeEnabled ? $this->calculateLoadTime($startTime) : false,
             'loadTimePrefix' => $this->loadTimePrefix,
@@ -203,6 +209,23 @@ class EasyFooterPlugin implements Plugin
     }
 
     /**
+     * Add a logo to the footer
+     *
+     * @param string $path Path to the logo image
+     * @param string|null $url Optional URL for logo link
+     * @param int $height Logo height in pixels (default: 20)
+     * @return static
+     */
+    public function withLogo(string $path, ?string $url = null, int $height = 20): static
+    {
+        $this->logoPath = $path;
+        $this->logoUrl = $url;
+        $this->logoHeight = $height;
+
+        return $this;
+    }
+
+    /**
      * Check if load time is enabled
      */
     public function isLoadTimeEnabled(): bool
@@ -224,6 +247,33 @@ class EasyFooterPlugin implements Plugin
     public function getLinks(): array
     {
         return $this->links;
+    }
+
+    /**
+     * Get the logo path
+     * @return string|null
+     */
+    public function getLogoPath(): ?string
+    {
+        return $this->logoPath;
+    }
+
+    /**
+     * Get the logo URL
+     * @return string|null
+     */
+    public function getLogoUrl(): ?string
+    {
+        return $this->logoUrl;
+    }
+
+    /**
+     * Get the logo height
+     * @return int
+     */
+    public function getLogoHeight(): int
+    {
+        return $this->logoHeight;
     }
 
     /**

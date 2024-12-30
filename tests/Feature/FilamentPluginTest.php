@@ -32,11 +32,11 @@ it('enables load time display without prefix')
 
 it('enables load time with prefix', function () {
     $plugin = EasyFooterPlugin::make()
-        ->withLoadTime('Page générée en');
+        ->withLoadTime('Page loaded in');
 
     expect($plugin)
         ->isLoadTimeEnabled()->toBeTrue()
-        ->getLoadTimePrefix()->toBe('Page générée en');
+        ->getLoadTimePrefix()->toBe('Page loaded in');
 });
 
 it('can disable load time explicitly')
@@ -48,11 +48,11 @@ it('can disable load time explicitly')
 it('keeps load time enabled when setting prefix', function () {
     $plugin = EasyFooterPlugin::make()
         ->withLoadTime(enabled: false)
-        ->withLoadTime('Page générée en');
+        ->withLoadTime('Page loaded in');
 
     expect($plugin)
         ->isLoadTimeEnabled()->toBeTrue()
-        ->getLoadTimePrefix()->toBe('Page générée en');
+        ->getLoadTimePrefix()->toBe('Page loaded in');
 });
 
 it('can update prefix while keeping enabled state', function () {
@@ -63,6 +63,26 @@ it('can update prefix while keeping enabled state', function () {
     expect($plugin)
         ->isLoadTimeEnabled()->toBeTrue()
         ->getLoadTimePrefix()->toBe('New prefix');
+});
+
+it('can add logo without URL', function () {
+    $plugin = EasyFooterPlugin::make()
+        ->withLogo('/path/to/logo.png');
+
+    expect($plugin)
+        ->getLogoPath()->toBe('/path/to/logo.png')
+        ->getLogoUrl()->toBeNull()
+        ->getLogoHeight()->toBe(20);
+});
+
+it('can add logo with URL', function () {
+    $plugin = EasyFooterPlugin::make()
+        ->withLogo('/path/to/logo.png', 'https://example.com', 25);
+
+    expect($plugin)
+        ->getLogoPath()->toBe('/path/to/logo.png')
+        ->getLogoUrl()->toBe('https://example.com')
+        ->getLogoHeight()->toBe(25);
 });
 
 it('limits and filters links correctly', function () {
