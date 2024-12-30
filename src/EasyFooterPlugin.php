@@ -29,8 +29,11 @@ class EasyFooterPlugin implements Plugin
     protected string $footerPosition = 'footer';
 
     protected array $links = [];
+
     protected ?string $logoPath = null;
+
     protected ?string $logoUrl = null;
+
     protected int $logoHeight = 20;
 
     /**
@@ -211,10 +214,9 @@ class EasyFooterPlugin implements Plugin
     /**
      * Add a logo to the footer
      *
-     * @param string $path Path to the logo image
-     * @param string|null $url Optional URL for logo link
-     * @param int $height Logo height in pixels (default: 20)
-     * @return static
+     * @param  string  $path  Path to the logo image
+     * @param  string|null  $url  Optional URL for logo link
+     * @param  int  $height  Logo height in pixels (default: 20)
      */
     public function withLogo(string $path, ?string $url = null, int $height = 20): static
     {
@@ -251,7 +253,6 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Get the logo path
-     * @return string|null
      */
     public function getLogoPath(): ?string
     {
@@ -260,7 +261,6 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Get the logo URL
-     * @return string|null
      */
     public function getLogoUrl(): ?string
     {
@@ -269,7 +269,6 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Get the logo height
-     * @return int
      */
     public function getLogoHeight(): int
     {
