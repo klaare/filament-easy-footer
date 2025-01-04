@@ -28,6 +28,7 @@ class EasyFooterPlugin implements Plugin
     protected ?string $loadTimePrefix = null;
 
     protected ?string $sentence = null;
+
     protected bool $isHtmlSentence = false;
 
     protected string $footerPosition = 'footer';
@@ -103,7 +104,7 @@ class EasyFooterPlugin implements Plugin
             'loadTimePrefix' => $this->loadTimePrefix,
             'links' => $this->links,
             'sentence' => $this->sentence,
-            'isHtmlSentence' => $this->isHtmlSentence
+            'isHtmlSentence' => $this->isHtmlSentence,
         ])->render();
     }
 
@@ -237,10 +238,9 @@ class EasyFooterPlugin implements Plugin
      *  Set a custom sentence that replaces the app name in the copyright text
      *  Only allows basic HTML tags for text formatting
      *
-     * @param string|HtmlString $sentence Custom text or HTML to display
-     * @return static
+     * @param  string|HtmlString  $sentence  Custom text or HTML to display
      */
-    public function withSentence(string|HtmlString $sentence): static
+    public function withSentence(string | HtmlString $sentence): static
     {
         if ($sentence instanceof HtmlString) {
             $sentence = $sentence->toHtml();
@@ -248,6 +248,7 @@ class EasyFooterPlugin implements Plugin
         }
 
         $this->sentence = strip_tags($sentence, '<strong><img><em><span><b><i><small>');
+
         return $this;
     }
 
@@ -301,7 +302,6 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Get the current sentence
-     * @return string|null
      */
     public function getSentence(): ?string
     {
@@ -310,7 +310,6 @@ class EasyFooterPlugin implements Plugin
 
     /**
      * Check if the sentence is HTML
-     * @return bool
      */
     public function isHtmlSentence(): bool
     {
