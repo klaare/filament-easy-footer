@@ -5,6 +5,7 @@ namespace Devonab\FilamentEasyFooter;
 use Devonab\FilamentEasyFooter\Services\GitHubService;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Illuminate\Support\HtmlString;
 
 class EasyFooterPlugin implements Plugin
 {
@@ -25,6 +26,9 @@ class EasyFooterPlugin implements Plugin
     protected bool $loadTimeEnabled = false;
 
     protected ?string $loadTimePrefix = null;
+
+    protected ?string $sentence = null;
+    protected bool $isHtmlSentence = false;
 
     protected string $footerPosition = 'footer';
 
@@ -98,6 +102,8 @@ class EasyFooterPlugin implements Plugin
             'loadTime' => $this->loadTimeEnabled ? $this->calculateLoadTime($startTime) : false,
             'loadTimePrefix' => $this->loadTimePrefix,
             'links' => $this->links,
+            'sentence' => $this->sentence,
+            'isHtmlSentence' => $this->isHtmlSentence
         ])->render();
     }
 
@@ -228,6 +234,24 @@ class EasyFooterPlugin implements Plugin
     }
 
     /**
+     *  Set a custom sentence that replaces the app name in the copyright text
+     *  Only allows basic HTML tags for text formatting
+     *
+     * @param string|HtmlString $sentence Custom text or HTML to display
+     * @return static
+     */
+    public function withSentence(string|HtmlString $sentence): static
+    {
+        if ($sentence instanceof HtmlString) {
+            $sentence = $sentence->toHtml();
+            $this->isHtmlSentence = true;
+        }
+
+        $this->sentence = strip_tags($sentence, '<strong><img><em><span><b><i><small>');
+        return $this;
+    }
+
+    /**
      * Check if load time is enabled
      */
     public function isLoadTimeEnabled(): bool
@@ -273,6 +297,24 @@ class EasyFooterPlugin implements Plugin
     public function getLogoHeight(): int
     {
         return $this->logoHeight;
+    }
+
+    /**
+     * Get the current sentence
+     * @return string|null
+     */
+    public function getSentence(): ?string
+    {
+        return $this->sentence;
+    }
+
+    /**
+     * Check if the sentence is HTML
+     * @return bool
+     */
+    public function isHtmlSentence(): bool
+    {
+        return $this->isHtmlSentence;
     }
 
     /**

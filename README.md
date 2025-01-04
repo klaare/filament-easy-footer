@@ -20,6 +20,7 @@ This filament Plugin provides an easy and flexible way to add a customizable foo
 - [Usage](#usage)
 - [Configurations](#configurations)
     - [Footer position](#footer-position)
+    - [Custom sentence](#custom-sentence)
     - [Show GitHub version](#show-github-version)
     - [Show load time](#load-time)
     - [Custom logo with link](#custom-logo-with-link)
@@ -134,6 +135,37 @@ use Devonab\FilamentEasyFooter\EasyFooterPlugin;
 ])
 ```
 ![Filament Easy Footer sidebar footer position](./art/position_sidebar_footer.webp)
+
+### Custom sentence
+![Filament Easy Footer custom sentence](./art/custom_sentence.webp)
+
+By default, the plugin will display the name of your application (configured from your .ENV) next to the copyright. You can change the phrase by publishing the plugin configuration file.
+
+If you prefer a more personalized approach, you can use the following method:
+
+```php
+use Devonab\FilamentEasyFooter\EasyFooterPlugin;
+
+->plugins([
+    EasyFooterPlugin::make()
+    ->withSentence('your sentence'),
+])
+```
+
+The method accepts a string or HTMLString as a parameter.
+With this, you can get the result you want. For example, for the result shown in the image above :
+
+```php
+use Devonab\FilamentEasyFooter\EasyFooterPlugin;
+
+->plugins([
+    EasyFooterPlugin::make()
+    ->withSentence(new HtmlString('<img src="https://static.cdnlogo.com/logos/l/23/laravel.svg" style="margin-right:.5rem;" alt="Laravel Logo" width="20" height="20"> Laravel'))
+,
+])
+```
+The authorized tags are as follows: `<strong><img><em><span><b><i><small>`.
+
 
 ### Show GitHub version
 ![Filament Easy Footer github](./art/github_version.webp)

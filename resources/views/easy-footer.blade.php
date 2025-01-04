@@ -35,7 +35,17 @@
         } => $footerPosition === 'footer',
     ])
 >
-    <span>&copy; {{ now()->format('Y') }} - {{ config('filament-easy-footer.app_name') }}</span>
+    <span @class(['flex gap-2' => $isHtmlSentence])>&copy; {{ now()->format('Y') }} -
+        @if($sentence)
+            @if($isHtmlSentence)
+                <span class="flex">{!! $sentence !!}</span>
+            @else
+                {{ $sentence }}
+            @endif
+        @else
+            {{ config('filament-easy-footer.app_name') }}
+        @endif
+    </span>
 
     @if($githubEnabled)
         <livewire:devonab.filament-easy-footer.github-version

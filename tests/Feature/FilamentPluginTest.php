@@ -2,6 +2,7 @@
 
 use Devonab\FilamentEasyFooter\EasyFooterPlugin;
 use Illuminate\Http\Request;
+use Illuminate\Support\HtmlString;
 
 it('has correct plugin ID')
     ->expect(fn () => EasyFooterPlugin::make()->getId())
@@ -103,6 +104,33 @@ it('limits and filters links correctly', function () {
             ['title' => 'Link 2', 'url' => 'url2'],
             ['title' => 'Link 3', 'url' => 'url3'],
         ]);
+});
+
+it('can set plain text sentence', function () {
+    $plugin = EasyFooterPlugin::make()
+        ->withSentence('Custom Footer Text');
+
+    expect($plugin->getSentence())->toBe('Custom Footer Text');
+});
+
+it('allows safe HTML tags', function () {
+    $plugin = EasyFooterPlugin::make()
+        ->withSentence(new HtmlString('<strong>Custom</strong> <em>Footer</em> Text'));
+
+    expect($plugin->getSentence())->toBe('<strong>Custom</strong> <em>Footer</em> Text');
+});
+
+it('strips unsafe HTML tags but keeps content', function () {
+    $plugin = EasyFooterPlugin::make()
+        ->withSentence(new HtmlString('<script>alert("I\'m a hacker yiek yiek")</script><strong>Safe</strong>'));
+
+    expect($plugin->getSentence())->toBe('alert("I\'m a hacker yiek yiek")<strong>Safe</strong>');
+});
+
+it('defaults to null sentence', function () {
+    $plugin = EasyFooterPlugin::make();
+
+    expect($plugin->getSentence())->toBeNull();
 });
 
 test('make creates new instance')
