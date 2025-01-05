@@ -1,7 +1,7 @@
 #  Filament EasyFooter
 
 
-![Filament Easy Footer cover](./art/cover.webp)
+![Filament Easy Footer cover](https://raw.githubusercontent.com/Devonab/filament-easy-footer/main/art/cover.webp)
 
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/devonab/filament-easy-footer.svg?style=flat-square)](https://packagist.org/packages/devonab/filament-easy-footer)
@@ -29,6 +29,7 @@ This filament Plugin provides an easy and flexible way to add a customizable foo
     - [Hiding from auth pages](#hiding-from-auth-pages)
 - [Testing](#testing)
 - [Contributing](#contributing)
+-  [Changelog](#changelog)
 - [Security Vulnerabilities](#security-vulnerabilities)
 - [Credits](#credits)
 - [License](#license)
@@ -114,7 +115,7 @@ use Devonab\FilamentEasyFooter\EasyFooterPlugin;
     ->withFooterPosition('footer'),
 ])
 ```
-![Filament Easy Footer position](./art/position_footer.webp)
+![Filament Easy Footer position](https://raw.githubusercontent.com/Devonab/filament-easy-footer/main/art/position_footer.webp)
 
 ```php
 use Devonab\FilamentEasyFooter\EasyFooterPlugin;
@@ -124,7 +125,7 @@ use Devonab\FilamentEasyFooter\EasyFooterPlugin;
     ->withFooterPosition('sidebar'),
 ])
 ```
-![Filament Easy Footer sidebar position](./art/position_sidebar.webp)
+![Filament Easy Footer sidebar position](https://raw.githubusercontent.com/Devonab/filament-easy-footer/main/art/position_sidebar.webp)
 
 ```php
 use Devonab\FilamentEasyFooter\EasyFooterPlugin;
@@ -134,10 +135,10 @@ use Devonab\FilamentEasyFooter\EasyFooterPlugin;
     ->withFooterPosition('sidebar.footer'),
 ])
 ```
-![Filament Easy Footer sidebar footer position](./art/position_sidebar_footer.webp)
+![Filament Easy Footer sidebar footer position](https://raw.githubusercontent.com/Devonab/filament-easy-footer/main/art/position_sidebar_footer.webp)
 
 ### Custom sentence
-![Filament Easy Footer custom sentence](./art/custom_sentence.webp)
+![Filament Easy Footer custom sentence](https://raw.githubusercontent.com/Devonab/filament-easy-footer/main/art/custom_sentence.webp)
 
 By default, the plugin will display the name of your application (configured from your .ENV) next to the copyright. You can change the phrase by publishing the plugin configuration file.
 
@@ -168,7 +169,7 @@ The authorized tags are as follows: `<strong><img><em><span><b><i><small>`.
 
 
 ### Show GitHub version
-![Filament Easy Footer github](./art/github_version.webp)
+![Filament Easy Footer github](https://raw.githubusercontent.com/Devonab/filament-easy-footer/main/art/github_version.webp)
 
 You can show the **GitHub version** of your application by using this configuration :
 ```php
@@ -193,7 +194,7 @@ GITHUB_CACHE_TTL= # in seconds, 3600 by default
 You can generate a token [here](https://github.com/settings/personal-access-tokens). The token need to have at least the `read-only` permission on the "Contents" scope in Repository permissions.
 
 ### Load time
-![Filament Easy Footer load time](./art/load_time.webp)
+![Filament Easy Footer load time](https://raw.githubusercontent.com/Devonab/filament-easy-footer/main/art/load_time.webp)
 
 If you want to display the **page load time**, you can use this configuration :
 
@@ -216,10 +217,10 @@ use Devonab\FilamentEasyFooter\EasyFooterPlugin;
     ->withLoadTime('This page loaded in'),
 ])
 ```
-![Filament Easy Footer loadtime prefix](./art/loadtime_prefix.webp)
+![Filament Easy Footer loadtime prefix](https://raw.githubusercontent.com/Devonab/filament-easy-footer/main/art/loadtime_prefix.webp)
 
 ### Custom logo with link
-![Filament Easy Footer custom logo](./art/custom_logo.webp)
+![Filament Easy Footer custom logo](https://raw.githubusercontent.com/Devonab/filament-easy-footer/main/art/custom_logo.webp)
 
 
 You can add **custom logo** with link to the footer by using this configuration :
@@ -245,7 +246,7 @@ use Devonab\FilamentEasyFooter\EasyFooterPlugin;
 
 
 ### Links
-![Filament Easy Footer links](./art/links.webp)
+![Filament Easy Footer links](https://raw.githubusercontent.com/Devonab/filament-easy-footer/main/art/links.webp)
 
 You can add **custom links** (3 links max) to the footer by using this configuration :
 ```php
@@ -286,7 +287,7 @@ use Devonab\FilamentEasyFooter\EasyFooterPlugin;
 ])
 ```
 
----
+
 
 ## Testing
 
@@ -300,21 +301,31 @@ composer test
 
 ## Changelog
 
+---
+
 Please see [CHANGELOG](https://github.com/Devonab/filament-easy-footer/releases) for more information on what has changed recently.
 
 ## Contributing
+
+---
 
 Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
+---
+
 Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
 ## Credits
 
-- [ Devonab](https://github.com/Devonab)
+---
+
+- [Devonab](https://github.com/Devonab)
 - [All Contributors](../../contributors)
 
 ## License
+
+---
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
