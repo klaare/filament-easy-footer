@@ -11,7 +11,7 @@ class EasyFooterPlugin implements Plugin
 {
     private const MAX_LINKS = 3;
 
-    private const AUTH_PATHS = ['admin/login', 'admin/register', 'admin/forgot-password'];
+    private array $hiddenPaths = ['admin/login', 'admin/register', 'admin/forgot-password'];
 
     protected bool $githubEnabled = false;
 
@@ -21,7 +21,7 @@ class EasyFooterPlugin implements Plugin
 
     protected bool $showUrl = true;
 
-    protected bool $hideFromAuthPagesEnabled = false;
+    protected bool $hiddenFromPagesEnabled = false;
 
     protected bool $loadTimeEnabled = false;
 
@@ -81,7 +81,7 @@ class EasyFooterPlugin implements Plugin
      */
     public function shouldSkipRendering(): bool
     {
-        return $this->hideFromAuthPagesEnabled && $this->isOnAuthPage();
+        return $this->hiddenFromPagesEnabled && $this->isOnHiddenPage();
     }
 
     /**
@@ -111,9 +111,9 @@ class EasyFooterPlugin implements Plugin
     /**
      * Check if the current page is an auth page
      */
-    protected function isOnAuthPage(): bool
+    protected function isOnHiddenPage(): bool
     {
-        return in_array(request()->path(), self::AUTH_PATHS, true);
+        return in_array(request()->path(), $this->hiddenPaths, true);
     }
 
     /**
@@ -137,13 +137,27 @@ class EasyFooterPlugin implements Plugin
     }
 
     /**
-     * Configure whether to hide the footer from auth pages
+     * Configure whether to hide the footer from specific pages
      *
      * @return static EasyFooterPlugin
      */
-    public function hideFromAuthPages(bool $enabled = true): static
+    public function hiddenFromPagesEnabled(bool $enabled = true): static
     {
-        $this->hideFromAuthPagesEnabled = $enabled;
+        $this->hiddenFromPagesEnabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Hide from these specific pages
+     *
+     * @param  array  $pages  Array of pages to hide the footer on
+     * 
+     * @return static EasyFooterPlugin
+     */
+    public function hiddenFromPages(array $pages): static
+    {
+        $this->hiddenPaths = $pages;
 
         return $this;
     }
