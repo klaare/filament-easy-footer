@@ -8,13 +8,36 @@ it('has correct plugin ID')
     ->expect(fn () => EasyFooterPlugin::make()->getId())
     ->toBe('filament-easy-footer');
 
-it('skips rendering on auth pages', function () {
+it('shows footer by default', function () {
     $request = Mockery::mock(Request::class)->makePartial();
-    $request->shouldReceive('path')->andReturn('admin/login');
+    $request->shouldReceive('path')->andReturn('admin/dashboard');
+    app()->instance('request', $request);
+
+    $plugin = EasyFooterPlugin::make();
+
+    expect($plugin->shouldSkipRendering())->toBeFalse();
+});
+
+it('shows footer on non-configured page', function () {
+    $request = Mockery::mock(Request::class)->makePartial();
+    $request->shouldReceive('path')->andReturn('admin/dashboard');
     app()->instance('request', $request);
 
     $plugin = EasyFooterPlugin::make()
-        ->hideFromAuthPages();
+        ->hiddenFromPagesEnabled()
+        ->hiddenFromPages(['admin/users', 'admin/login']);
+
+    expect($plugin->shouldSkipRendering())->toBeFalse();
+});
+
+it('hides footer on configured page', function () {
+    $request = Mockery::mock(Request::class)->makePartial();
+    $request->shouldReceive('path')->andReturn('admin/dashboard');
+    app()->instance('request', $request);
+
+    $plugin = EasyFooterPlugin::make()
+        ->hiddenFromPagesEnabled()
+        ->hiddenFromPages(['admin/dashboard', 'admin/login']);
 
     expect($plugin->shouldSkipRendering())->toBeTrue();
 });

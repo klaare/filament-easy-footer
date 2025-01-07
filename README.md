@@ -26,7 +26,7 @@ This filament Plugin provides an easy and flexible way to add a customizable foo
     - [Custom logo with link](#custom-logo-with-link)
     - [Add customs links](#links)
     - [Border on top](#border-on-top)
-    - [Hiding from auth pages](#hiding-from-auth-pages)
+    - [Hiding from specific pages](#hiding-from-specific-pages)
 - [Testing](#testing)
 - [Contributing](#contributing)
 -  [Changelog](#changelog)
@@ -275,17 +275,30 @@ use Devonab\FilamentEasyFooter\EasyFooterPlugin;
 ])
 ```
 
-### Hiding from auth pages
-By default, the footer is also showed on the 3 auth pages : login, forgot-password and register. You can hide it by using this configuration :
+### Hiding from specific pages
+By default, the footer is also showed on the 3 auth pages : admin/login, admin/forgot-password and admin/register. You can hide it by using this configuration :
 
 ```php
 use Devonab\FilamentEasyFooter\EasyFooterPlugin;
 
 ->plugins([
     EasyFooterPlugin::make()
-    ->hideFromAuthPages(),
+    ->hiddenFromPagesEnabled(),
 ])
 ```
+
+If you would like to hide the footer on other pages, you can use this configuration :
+```php
+use Devonab\FilamentEasyFooter\EasyFooterPlugin;
+
+->plugins([
+    EasyFooterPlugin::make()
+    ->hiddenFromPagesEnabled()
+    ->hiddenFromPages(['sample-page', 'another-page', 'admin/login', 'admin/forgot-password', 'admin/register']),
+])
+```
+
+Note that anything set in `hiddenFromPages()` will override the default behavior.
 
 
 
