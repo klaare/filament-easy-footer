@@ -152,7 +152,6 @@ class EasyFooterPlugin implements Plugin
      * Hide from these specific pages
      *
      * @param  array  $pages  Array of pages to hide the footer on
-     * 
      * @return static EasyFooterPlugin
      */
     public function hiddenFromPages(array $pages): static
