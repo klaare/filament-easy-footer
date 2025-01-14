@@ -41,6 +41,8 @@ class EasyFooterPlugin implements Plugin
 
     protected int $logoHeight = 20;
 
+    protected bool $isFooterEnabled = true;
+
     /**
      * Get the unique identifier for the plugin
      */
@@ -56,7 +58,7 @@ class EasyFooterPlugin implements Plugin
      */
     public function register(Panel $panel): void
     {
-        if ($this->shouldSkipRendering()) {
+        if ($this->shouldSkipRendering() || !$this->isFooterEnabled) {
             return;
         }
 
@@ -75,6 +77,29 @@ class EasyFooterPlugin implements Plugin
             fn (): string => $this->renderFooter($startTime)
         );
     }
+
+
+    /**
+     * Enable or disable the footer completely
+     * using ->footerEnabled(true or false)
+     *
+     * @param bool $enabled Whether the footer should be displayed
+     */
+    public function footerEnabled(bool $enabled = true): static
+    {
+        $this->isFooterEnabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Check if the footer is enabled
+     */
+    public function isFooterEnabled(): bool
+    {
+        return $this->isFooterEnabled;
+    }
+
 
     /**
      * Check if the footer rendering should be skipped
