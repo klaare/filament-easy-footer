@@ -19,6 +19,7 @@ This filament Plugin provides an easy and flexible way to add a customizable foo
 - [Installation](#installation)
 - [Usage](#usage)
 - [Configurations](#configurations)
+    - [Enable or Disable the Footer](#enable-or-disable-the-footer) 
     - [Footer position](#footer-position)
     - [Custom sentence](#custom-sentence)
     - [Show GitHub version](#show-github-version)
@@ -87,6 +88,20 @@ use Devonab\FilamentEasyFooter\EasyFooterPlugin;
 ## Configurations
 
 ---
+
+### Enable or Disable the Footer
+
+You can **enable or disable the footer** entirely using the following configuration:
+
+```php
+use Devonab\FilamentEasyFooter\EasyFooterPlugin;
+
+->plugins([
+    EasyFooterPlugin::make()
+    ->footerEnabled() // true by default,
+]);
+```
+Without this configuration, the footer will be enabled by default.
 
 ### Footer position
 
