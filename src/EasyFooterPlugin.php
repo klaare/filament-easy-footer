@@ -58,7 +58,7 @@ class EasyFooterPlugin implements Plugin
      */
     public function register(Panel $panel): void
     {
-        if ($this->shouldSkipRendering() || !$this->isFooterEnabled) {
+        if ($this->shouldSkipRendering() || ! $this->isFooterEnabled) {
             return;
         }
 
@@ -78,12 +78,11 @@ class EasyFooterPlugin implements Plugin
         );
     }
 
-
     /**
      * Enable or disable the footer completely
      * using ->footerEnabled(true or false)
      *
-     * @param bool $enabled Whether the footer should be displayed
+     * @param  bool  $enabled  Whether the footer should be displayed
      */
     public function footerEnabled(bool $enabled = true): static
     {
@@ -99,7 +98,6 @@ class EasyFooterPlugin implements Plugin
     {
         return $this->isFooterEnabled;
     }
-
 
     /**
      * Check if the footer rendering should be skipped
