@@ -8,6 +8,38 @@ it('has correct plugin ID')
     ->expect(fn () => EasyFooterPlugin::make()->getId())
     ->toBe('filament-easy-footer');
 
+it('enables footer by default')
+    ->expect(fn () => EasyFooterPlugin::make()->isFooterEnabled())
+    ->toBeTrue();
+
+it('can disable footer', function () {
+    $plugin = EasyFooterPlugin::make()
+        ->footerEnabled(false);
+
+    expect($plugin->isFooterEnabled())->toBeFalse();
+});
+
+it('can enable footer explicitly', function () {
+    $plugin = EasyFooterPlugin::make()
+        ->footerEnabled(false)
+        ->footerEnabled(true);
+
+    expect($plugin->isFooterEnabled())->toBeTrue();
+});
+
+it('skips rendering when footer is disabled', function () {
+    $request = Mockery::mock(Request::class)->makePartial();
+    $request->shouldReceive('path')->andReturn('admin/dashboard');
+    app()->instance('request', $request);
+
+    $plugin = EasyFooterPlugin::make()
+        ->footerEnabled(false);
+
+    expect($plugin)
+        ->isFooterEnabled()->toBeFalse()
+        ->shouldSkipRendering()->toBeFalse();
+});
+
 it('shows footer by default', function () {
     $request = Mockery::mock(Request::class)->makePartial();
     $request->shouldReceive('path')->andReturn('admin/dashboard');

@@ -4,6 +4,8 @@
     "keywords": [
         "Devonab",
         "laravel",
+        "filament",
+        "filament-php",
         "filament-easy-footer"
     ],
     "homepage": "https://github.com/devonab/filament-easy-footer",
@@ -15,7 +17,6 @@
     "authors": [
         {
             "name": " Devonab",
-            "email": "vable93@gmail.com",
             "role": "Developer"
         }
     ],
