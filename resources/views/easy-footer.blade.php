@@ -35,10 +35,10 @@
         } => $footerPosition === 'footer',
     ])
 >
-    <span @class(['flex gap-2' => $isHtmlSentence])>&copy; {{ now()->format('Y') }} -
+    <span @class(['flex items-center gap-2' => $isHtmlSentence])>&copy; {{ now()->format('Y') }} -
         @if($sentence)
             @if($isHtmlSentence)
-                <span class="flex">{!! $sentence !!}</span>
+                <span class="flex items-center gap-2">{!! $sentence !!}</span>
             @else
                 {{ $sentence }}
             @endif

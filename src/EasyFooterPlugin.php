@@ -65,7 +65,7 @@ class EasyFooterPlugin implements Plugin
         $githubService = app(GitHubService::class);
 
         if ($this->githubEnabled) {
-            $githubService->enable();
+            $githubService->enable($this->showLogo, $this->showUrl);
         } else {
             $githubService->disable();
         }
@@ -283,7 +283,7 @@ class EasyFooterPlugin implements Plugin
             $this->isHtmlSentence = true;
         }
 
-        $this->sentence = strip_tags($sentence, '<strong><img><em><span><b><i><small>');
+        $this->sentence = strip_tags($sentence, '<strong><img><a><em><span><b><i><small>');
 
         return $this;
     }

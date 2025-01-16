@@ -180,7 +180,7 @@ use Devonab\FilamentEasyFooter\EasyFooterPlugin;
 ,
 ])
 ```
-The authorized tags are as follows: `<strong><img><em><span><b><i><small>`.
+The authorized tags are as follows: `<strong><img><a><em><span><b><i><small>`.
 
 
 ### Show GitHub version
