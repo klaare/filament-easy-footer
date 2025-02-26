@@ -202,11 +202,10 @@ To make this one work, you need to add this keys to our .env file :
 
 ```bash
 GITHUB_REPOSITORY=user/name-of-the-repo
-GITHUB_TOKEN=
+GITHUB_TOKEN= # Recommended but not compulsory for all repos, required for private repos
 GITHUB_CACHE_TTL= # in seconds, 3600 by default
 ```
-
-You can generate a token [here](https://github.com/settings/personal-access-tokens). The token need to have at least the `read-only` permission on the "Contents" scope in Repository permissions.
+If needed, you can generate a token [here](https://github.com/settings/personal-access-tokens). The token need to have at least the `read-only` permission on the "Contents" scope in Repository permissions.
 
 ### Load time
 ![Filament Easy Footer load time](https://raw.githubusercontent.com/Devonab/filament-easy-footer/main/art/load_time.webp)
