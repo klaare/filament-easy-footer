@@ -133,10 +133,11 @@ it('can add logo without URL', function () {
 
 it('can add logo with URL', function () {
     $plugin = EasyFooterPlugin::make()
-        ->withLogo('/path/to/logo.png', 'https://example.com', 25);
+        ->withLogo('/path/to/logo.png', 'https://example.com', 'Something', 25);
 
     expect($plugin)
         ->getLogoPath()->toBe('/path/to/logo.png')
+        ->getLogoText()->toBe('Something')
         ->getLogoUrl()->toBe('https://example.com')
         ->getLogoHeight()->toBe(25);
 });

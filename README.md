@@ -238,24 +238,52 @@ use Devonab\FilamentEasyFooter\EasyFooterPlugin;
 ![Filament Easy Footer custom logo](https://raw.githubusercontent.com/Devonab/filament-easy-footer/main/art/custom_logo.webp)
 
 
-You can add **custom logo** with link to the footer by using this configuration :
+### Custom logo with link
+![Filament Easy Footer custom logo](https://raw.githubusercontent.com/Devonab/filament-easy-footer/main/art/custom_logo.webp)
+
+You can add a **custom logo** with optional link and text to the footer by using this configuration:
 
 ```php
 use Devonab\FilamentEasyFooter\EasyFooterPlugin;
 
 ->plugins([
     EasyFooterPlugin::make()
-    ->withLogo('https://static.cdnlogo.com/logos/l/23/laravel.svg', 'https://laravel.com')
+        ->withLogo(
+            'https://static.cdnlogo.com/logos/l/23/laravel.svg', // Path to logo
+            'https://laravel.com'                                // URL for logo link (optional)
+        )
 ])
 ```
 
-You're not obliged to add a link, and if you wish, you can specify the height of the logo as a parameter (default: 20px).
+You can customize the logo further with optional text and height:
+
 ```php
 use Devonab\FilamentEasyFooter\EasyFooterPlugin;
 
 ->plugins([
     EasyFooterPlugin::make()
-    ->withLogo('https://static.cdnlogo.com/logos/l/23/laravel.svg', null, 60)
+        ->withLogo(
+            'https://static.cdnlogo.com/logos/l/23/laravel.svg', // Path to logo
+            'https://laravel.com',                               // URL for logo link (optional)
+            'Powered by Laravel',                                // Text to display (optional)
+            35                                                   // Logo height in pixels (default: 20)
+        )
+])
+```
+
+If you don't need the link, you can pass `null` for the second parameter:
+
+```php
+use Devonab\FilamentEasyFooter\EasyFooterPlugin;
+
+->plugins([
+    EasyFooterPlugin::make()
+        ->withLogo(
+            'https://static.cdnlogo.com/logos/l/23/laravel.svg', // Path to logo
+            null,                                                // No link
+            null,                                                // No text
+            60                                                   // Logo height in pixels
+        )
 ])
 ```
 
