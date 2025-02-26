@@ -262,10 +262,10 @@ class EasyFooterPlugin implements Plugin
      *
      * @param  string  $path  Path to the logo image
      * @param  string|null  $url  Optional URL for logo link
-     * @param string|null $text Optional text to display before the logo
+     * @param  string|null  $text  Optional text to display before the logo
      * @param  int  $height  Logo height in pixels (default: 20)
      */
-    public function withLogo(string $path, ?string $url = null, string $text = null, int $height = 20): static
+    public function withLogo(string $path, ?string $url = null, ?string $text = null, int $height = 20): static
     {
         $this->logoPath = $path;
         $this->logoUrl = $url;
