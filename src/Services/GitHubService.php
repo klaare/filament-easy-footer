@@ -83,14 +83,15 @@ class GitHubService
     protected function fetchLatestTag(string $repository): ?string
     {
         try {
-            $response = Http::withToken($this->token)
+            $response = Http::when(config('filament-easy-footer.github.token'),fn ($request) => $request->withToken($this->token))
                 ->get("https://api.github.com/repos/{$repository}/releases/latest");
+
 
             if ($response->successful()) {
                 return $response->json('tag_name');
             }
 
-            $tagsResponse = Http::withToken($this->token)
+            $tagsResponse = Http::when(config('filament-easy-footer.github.token'),fn ($request) => $request->withToken($this->token))
                 ->get("https://api.github.com/repos/{$repository}/tags");
 
             if ($tagsResponse->successful() && ! empty($tagsResponse->json())) {
