@@ -55,9 +55,12 @@
     @endif
 
     @if($logoPath)
-        <span class="flex items-center">
+        <span class="flex items-center gap-2">
+            @if($logoText)
+                <span>{{ $logoText }}</span>
+            @endif
             @if($logoUrl)
-                <a href="{{ $logoUrl }}" class="inline-flex">
+                <a href="{{ $logoUrl }}" class="inline-flex" target="_blank">
                     @endif
                     <img
                         src="{{ $logoPath }}"
