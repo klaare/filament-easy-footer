@@ -39,6 +39,8 @@ class EasyFooterPlugin implements Plugin
 
     protected ?string $logoUrl = null;
 
+    protected ?string $logoText = null;
+
     protected int $logoHeight = 20;
 
     protected bool $isFooterEnabled = true;
@@ -121,6 +123,7 @@ class EasyFooterPlugin implements Plugin
             'showUrl' => $this->showUrl,
             'logoPath' => $this->logoPath,
             'logoUrl' => $this->logoUrl,
+            'logoText' => $this->logoText,
             'logoHeight' => $this->logoHeight,
             'borderTopEnabled' => $this->borderTopEnabled,
             'loadTime' => $this->loadTimeEnabled ? $this->calculateLoadTime($startTime) : false,
@@ -261,11 +264,12 @@ class EasyFooterPlugin implements Plugin
      * @param  string|null  $url  Optional URL for logo link
      * @param  int  $height  Logo height in pixels (default: 20)
      */
-    public function withLogo(string $path, ?string $url = null, int $height = 20): static
+    public function withLogo(string $path, ?string $url = null, string $text = null, int $height = 20): static
     {
         $this->logoPath = $path;
         $this->logoUrl = $url;
         $this->logoHeight = $height;
+        $this->logoText = $text;
 
         return $this;
     }
