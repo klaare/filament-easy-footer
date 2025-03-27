@@ -12,6 +12,10 @@
     @apply pr-4 border-r border-gray-200 dark:border-gray-700;
 }
 
+.fi-footer > span > span > span:first-child {
+    @apply pr-4 border-r border-gray-200 dark:border-gray-700;
+}
+
 .fi-footer:not(.fi-sidebar) > span:not(:first-child):not(:last-child) {
     @apply border-r border-gray-200 dark:border-gray-700;
 }
