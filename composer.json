@@ -1,5 +1,5 @@
 {
-    "name": "devonab/filament-easy-footer",
+    "name": "klaare/filament-easy-footer",
     "description": "A simple plugin to display a customizable footer in your filament application!",
     "keywords": [
         "Devonab",
@@ -8,7 +8,7 @@
         "filament-php",
         "filament-easy-footer"
     ],
-    "homepage": "https://github.com/devonab/filament-easy-footer",
+    "homepage": "https://github.com/klaare/filament-easy-footer",
     "support": {
         "issues": "https://github.com/devonab/filament-easy-footer/issues",
         "source": "https://github.com/devonab/filament-easy-footer"
